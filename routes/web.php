@@ -47,7 +47,7 @@ Route::get('/user/{id?}', function ($id=0) {
 
 Route::get('/user/{id}', function ($id) {
     return $id;
-})->where('id','[0-9]');
+})->where('ie','[0-9]');
 
 Route::get('/ser/{id}/{name}', function ($id,$name) {
     return $id . $name;
