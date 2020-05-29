@@ -50,11 +50,44 @@ class EmployeeController extends Controller
         return $this->employees[$id][$param];
     }
 
-    public function show()
+    public function showTwo()
     {
+        return view('employee.new');
+    }
+    public function show($city = 'minsk',$year = '1123')
+    {
+        $tbl = [];
+        $k=0;
+        for ($i=1;$i<=5;$i++){
+            for ($j=1;$j<=5;$j++) {
+                $k++;
+                $tbl[$i][] = $k;
+            }
+        }
+        /*echo "<pre>";
+        print_r($tbl);
+        echo "</pre>";*/
+        $employees = [
+            [
+                'name' => 'user1',
+                'surname' => 'surname1',
+                'salary' => 1000,
+            ],
+            [
+                'name' => 'user2',
+                'surname' => 'surname2',
+                'salary' => 2000,
+            ],
+            [
+                'name' => 'user3',
+                'surname' => 'surname3',
+                'salary' => 3000,
+            ],
+        ];
+
         $text = 'ссылка';
         $href = 'yes.ru';
-        $city = '';
+        $str = '<b>строка</b>';
         return view('employee.employee',
             [   'name'=>'kolia',
                 'surname'=>'iliev',
@@ -67,6 +100,19 @@ class EmployeeController extends Controller
                 'href'=>$href,
                 'worker'=>['name'=>'serg','surname'=>'kalina','salary'=>300],
                 'city'=>$city,
+                'year' => $year,
+                'str' => $str,
+                'weekday' => 5,
+                'month'=> '9',
+                'age'=>17,
+                'arr'=>[1,2,3],
+                'arr2'=>[10,9,8],
+                'data'=>9,
+                'table'=>$tbl,
+                'employees'=>$employees,
+                'sring' =>['str','str2','str3'],
+                'nums'=>[10,9,8,7,6,5,4],
+                'num'=>[],
 
 
             ]);

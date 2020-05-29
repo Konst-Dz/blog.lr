@@ -47,7 +47,7 @@ Route::get('/user/{id?}', function ($id=0) {
 
 Route::get('/user/{id}', function ($id) {
     return $id;
-})->where('ie','[0-9]');
+})->where('id','[0-9]');
 
 Route::get('/ser/{id}/{name}', function ($id,$name) {
     return $id . $name;
@@ -77,3 +77,4 @@ Route::get('test/sum/{num1}/{num2}', 'TestController@sum')->where(['num1'=>'\d+'
 Route::get('employee/{id}', 'EmployeeController@showOne')->where('id','[0-9]+');
 Route::get('employee/{id}/{param}', 'EmployeeController@showField')->where(['id'=>'\d+','param'=>'(name|surname|salary)']);
 Route::get('test/emp', 'EmployeeController@show');
+Route::get('test/new', 'EmployeeController@showTwo');
