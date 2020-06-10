@@ -78,3 +78,6 @@ Route::get('employee/{id}', 'EmployeeController@showOne')->where('id','[0-9]+');
 Route::get('employee/{id}/{param}', 'EmployeeController@showField')->where(['id'=>'\d+','param'=>'(name|surname|salary)']);
 Route::get('test/emp', 'EmployeeController@show');
 Route::get('test/new', 'EmployeeController@showTwo');
+Route::get('post/{id}', 'PostController@showOne');
+Route::get('posts/', 'PostController@showAll');
+Route::get('product/{category_id}/{product_id}', 'ProductController@showProduct');

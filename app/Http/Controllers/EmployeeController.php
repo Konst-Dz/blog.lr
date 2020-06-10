@@ -53,6 +53,14 @@ class EmployeeController extends Controller
 
     public function showTwo()
     {
+        $num = date('t');
+        var_dump($num);
+        $month = [];
+        for ($i=1;$i<=$num;$i++){
+            $month[]=$i;
+        }
+        $day = date('j');
+        var_dump($month);
         return view('employee.new',['title'=>'new',
             'aside'=>'add entry',
             'links'=>[
@@ -94,6 +102,40 @@ class EmployeeController extends Controller
                     'salary' => 5000,
                 ],
             ],
+            'users' => [
+                [
+                    'name' => 'user1',
+                    'surname' => 'surname1',
+                    'banned' => true,
+                ],
+                [
+                    'name' => 'user2',
+                    'surname' => 'surname2',
+                    'banned' => false,
+                ],
+                [
+                    'name' => 'user3',
+                    'surname' => 'surname3',
+                    'banned' => true,
+                ],
+                [
+                    'name' => 'user4',
+                    'surname' => 'surname4',
+                    'banned' => false,
+                ],
+                [
+                    'name' => 'user5',
+                    'surname' => 'surname5',
+                    'banned' => false,
+                ],
+            ],
+            'red'=>'color:red',
+            'green'=>'color:green',
+            'arr' => [
+                'str1','str2','str3','str4',
+            ],
+            'month'=>$month,
+            'day'=>$day,
 
 
             ]);
