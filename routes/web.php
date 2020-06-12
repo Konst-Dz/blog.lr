@@ -17,9 +17,9 @@ Route::get('/', function () {
     return '!!!';
 });
 
-Route::get('/test/', function () {
+/*Route::get('/test/', function () {
     return '!';
-});
+});*/
 
 Route::get('/dir/test/', function () {
     return '!!';
@@ -70,16 +70,20 @@ Route::get('/{year}/{month}/{day}', function ($year,$month,$day) {
     echo $date->format('W');
 })->where(['year'=>'20[0-9]{2}','month'=>'[0-1][0-9]','day'=>'[0-3][0-9]']);
 
-Route::get('test/show', 'TestController@show');
+//Route::get('test/show', 'TestController@show');
 Route::get('pages/show/{id}', 'PageController@showOne');
 Route::get('pages/all', 'PageController@showAll')->where('id','[0-9]+');
-Route::get('test/sum/{num1}/{num2}', 'TestController@sum')->where(['num1'=>'\d+','num2','\d+']);
+//Route::get('test/sum/{num1}/{num2}', 'TestController@sum')->where(['num1'=>'\d+','num2','\d+']);
 Route::get('employee/{id}', 'EmployeeController@showOne')->where('id','[0-9]+');
 Route::get('employee/{id}/{param}', 'EmployeeController@showField')->where(['id'=>'\d+','param'=>'(name|surname|salary)']);
 Route::get('test/emp', 'EmployeeController@show');
-Route::get('test/new', 'EmployeeController@showTwo');
+//Route::get('test/new', 'EmployeeController@showTwo');
 Route::get('post/{id}', 'PostController@showOne');
 Route::get('posts/', 'PostController@showAll');
 Route::get('product/{category_id}/{product_id}', 'ProductController@showProduct');
 Route::get('product/{category_id}', 'ProductController@showCategory');
 Route::get('product/', 'ProductController@showCategoryList');
+//Route::get('test/', 'TestController@form');
+
+Route::get('testa/', 'TestController@formPost');
+Route::get('result/', 'TestController@resultPost');
