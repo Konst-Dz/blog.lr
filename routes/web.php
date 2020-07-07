@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return '!!!';
-});
+});*/
 
 /*Route::get('/test/', function () {
     return '!';
 });*/
-
+/*
 Route::get('/dir/test/', function () {
     return '!!';
 });
@@ -85,5 +85,30 @@ Route::get('product/{category_id}', 'ProductController@showCategory');
 Route::get('product/', 'ProductController@showCategoryList');
 //Route::get('test/', 'TestController@form');
 
-Route::get('testa/', 'TestController@formPost');
-Route::get('result/', 'TestController@resultPost');
+Route::get('testa/', 'TestController@formPost');*/
+
+/*Route::get('form', 'TestsController@form');
+Route::post('result', 'TestsController@result');
+
+Route::match( ['get','post'],'new/form/{id}/{num}', 'TestsController@oneForm');
+
+Route::get('/test/method/', 'TestsController@anotherMethod');*/
+/*Route::get('/tests/1/', 'TestsController@form');
+
+Route::get('/tests/sendform/', 'TestsController@sendForm');
+Route::get('/tests/sending/', 'TestsController@sending');*/
+
+/*Route::get('tests/sendform', 'TestsController@sendForm');
+Route::post('tests/sending', 'TestsController@sending');*/
+/*Route::match(['get','post'], 'tests/sending','TestsController@sending');*/
+/*Route::match(['get','post'], 'tests/{id}/{num}','TestsController@sending');*/
+/*Route::match(['get','post'],'test/method', 'TestsController@sending');*/
+/*Route::get('session', 'SessionController@session');*/
+/*Route::get('put', 'SessionController@createSess');
+Route::get('pull', 'SessionController@getSess');*/
+/*Route::get('form', 'RedirectController@form');
+Route::get('output', 'RedirectController@output');*/
+/*Route::get('form', 'RedirectController@form');
+Route::get('output/{param1}/{param2}', 'RedirectController@output') ->name('out');*/
+Route::get('action', 'FlashController@action');
+Route::get('flash', 'FlashController@flash') ->name('flash');
