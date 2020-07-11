@@ -1,6 +1,5 @@
-
 <form action="">
-    <input type="number" name="num1" >
-    <input type="number" name="num2" >
+    <input type="text" name="name" value="{{ old('name') }}">
+    <input type="text" name="age" value="{{ old('age') }}">
     <input type="submit">
 </form>

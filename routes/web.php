@@ -110,5 +110,7 @@ Route::get('pull', 'SessionController@getSess');*/
 Route::get('output', 'RedirectController@output');*/
 /*Route::get('form', 'RedirectController@form');
 Route::get('output/{param1}/{param2}', 'RedirectController@output') ->name('out');*/
-Route::get('action', 'FlashController@action');
-Route::get('flash', 'FlashController@flash') ->name('flash');
+/*Route::get('action', 'FlashController@action');
+Route::get('flash', 'FlashController@flash')->name('flash');*/
+Route::get('set', 'CookieController@form');
+
