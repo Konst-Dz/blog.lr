@@ -3,67 +3,113 @@
 
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
+use App\Person;
+use App\Post;
+use App\User;
+use App\City;
+use http\Env\Response;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class PostController extends Controller
 {
-    private $posts;
 
-    public function __construct()
+    public function getAll($order = 'date',$dir = 'desc')
     {
-        $this->posts = [
-            1 => [
-                'title'  => 'Тайтл страницы 1',
-                'author' => 'Автор страницы 1',
-                'date'   => 'Дата публикации страницы 1',
-                'teaser' => 'Короткое описание страницы 1',
-                'text'   => 'Полный текст страницы 1',
-            ],
-            2 => [
-                'title'  => 'Тайтл страницы 2',
-                'author' => 'Автор страницы 2',
-                'date'   => 'Дата публикации страницы 2',
-                'teaser' => 'Короткое описание страницы 2',
-                'text'   => 'Полный текст страницы 2',
-            ],
-            3 => [
-                'title'  => 'Тайтл страницы 3',
-                'author' => 'Автор страницы 3',
-                'date'   => 'Дата публикации страницы 3',
-                'teaser' => 'Короткое описание страницы 3',
-                'text'   => 'Полный текст страницы 3',
-            ],
-            4 => [
-                'title'  => 'Тайтл страницы 4',
-                'author' => 'Автор страницы 4',
-                'date'   => 'Дата публикации страницы 4',
-                'teaser' => 'Короткое описание страницы 4',
-                'text'   => 'Полный текст страницы 4',
-            ],
-            5 => [
-                'title'  => 'Тайтл страницы 5',
-                'author' => 'Автор страницы 5',
-                'date'   => 'Дата публикации страницы 5',
-                'teaser' => 'Короткое описание страницы 5',
-                'text'   => 'Полный текст страницы 5',
-            ],
-        ];
+        $posts = Post::orderBy($order,$dir)->get();
+        return view('post.all',['posts' => $posts]);
     }
 
-    public function showOne($id)
+    public function getOne($id)
     {
-        if (isset($this->posts[$id])){
-        $posts = $this->posts[$id];
-        return view('post.post',['posts'=>$posts]) ;
-        }
+        $post = Post::findOrFail($id);
+        return view('post.one',['post' => $post]);
+
+    }
+
+    public function newPost(Request $request)
+    {
+        if ($request->filled(['title','desc','text'])){
+            $post = new Post();
+            $post->title = $request->title;
+            $post->desc = $request->desc;
+            $post->text = $request->text;
+            $post->save();
+            return response('success', 200)->header('Content-Type', 'text/plain');
+       }
         else{
-            return view('post.error',['id'=>$id]);
+            return view('post.form');
         }
     }
 
-    public function showAll()
+    public function editPost(Request $request,$id)
     {
-        $posts = $this->posts;
-        return view('post.all',['posts'=>$posts]);
-  }
+        $post = Post::find($id);
+        if ($request->filled(['title','desc','date','text'])){
+            $post->title = $request->title;
+            $post->desc  = $request->desc;
+            $post->date  = $request->date;
+            $post->text  = $request->text;
+
+            $post -> save();
+            return redirect()->route('all')->with('success',"$post->id updated!");
+        }
+        return view('post.editpost',['post' => $post]);
+
+    }
+
+    public function massAssignment()
+    {
+      /* $post = Post::create();
+        $post->fill(['title' => 'Flight 22']);
+        $post->save();
+        return 'succes';*/
+
+      //$post = Post::firstOrCreate(['title'=>'Flight 22']);
+      $post = Post::firstOrNew(['title'=>'Flight 23']);
+      $post->save();
+        /*$post = Post::firstOrCreate(['title'=>'Flight 23'],
+            ['desc'=>123]);*/
+        return 'succes';
+
+    }
+
+    public function delPost($id)
+    {
+
+        $del = Post::find($id);
+        $del->delete();
+        return redirect()->route('all')->with('success',"$del->title deleted!");
+    }
+
+    public function getDeletedPost()
+    {
+        $trashed = Post::onlyTrashed()->get();
+
+        return view('post.deleted',['trashed' =>$trashed]);
+
+    }
+
+    public function restorePost($id)
+    {
+        $post = Post::withTrashed()->where('id',$id)->restore();
+        return 'success';
+    }
+
+    /*public function real()
+    {
+        $post = User::all();
+
+        return view('post.real',['post'=>$post]);
+
+    }*/
+
+    public function real()
+    {
+        $person = Person::all();
+       return view('post.real',['person'=>$person]);
+    }
+
 
 }
+

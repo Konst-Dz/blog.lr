@@ -1,3 +1,18 @@
+@if(session('success'))
+    {{session('success')}}
+@endif
+<table>
+    @foreach($posts as $post)
+        <tr>
+            <td>{{$post->id}}</td>
+            <td><a href="/post/{{ $post->id }}">{{$post->title}}</a></td>
+            <td>{{$post->desc}}</td>
+            <td><a href="/post/edit/{{$post->id}}">edit</a></td>
+            <td><a href="/post/del/{{$post->id}}">delete</a></td>
+        </tr>
+    @endforeach
+</table>
+{{--
 @extends('layouts.postlayout')
 @section('title','Список станиц')
 
@@ -18,3 +33,4 @@
 </div>
     @endforeach
 @endsection
+--}}

@@ -112,5 +112,15 @@ Route::get('output', 'RedirectController@output');*/
 Route::get('output/{param1}/{param2}', 'RedirectController@output') ->name('out');*/
 /*Route::get('action', 'FlashController@action');
 Route::get('flash', 'FlashController@flash')->name('flash');*/
-Route::get('set', 'CookieController@form');
+/*Route::get('set', 'CookieController@form');*/
+/*Route::get('query', 'QueryController@test');*/
 
+Route::get('post/all/{order?}/{dir?}', 'PostController@getAll')->name('all')->where(['order'=>'date|title|id','dir' => 'desc|asc']);
+Route::get('post/{id}', 'PostController@getOne')->where('id','^[0-9]{1,5}$');
+Route::match(['get','post'],'post/new','PostController@newPost');
+Route::match(['get','post'],'post/edit/{id}','PostController@editPost');
+Route::get('mass','PostController@massAssignment');
+Route::get('post/del/{id}','PostController@delPost');
+Route::get('post/deleted','PostController@getDeletedPost');
+Route::get('post/restore/{id}','PostController@restorePost');
+Route::get('real','PostController@real');
