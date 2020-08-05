@@ -2,6 +2,7 @@
 
 
 namespace App\Http\Controllers;
+use App\Country;
 use App\Http\Controllers\Controller;
 use App\Person;
 use App\Post;
@@ -10,6 +11,7 @@ use App\City;
 use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+
 
 class PostController extends Controller
 {
@@ -106,7 +108,9 @@ class PostController extends Controller
 
     public function real()
     {
-        $person = Person::all();
+        $person = City::all();
+
+
        return view('post.real',['person'=>$person]);
     }
 

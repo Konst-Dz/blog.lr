@@ -10,4 +10,10 @@ class City extends Model
     {
         return $this->hasOne('App\Person');
     }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Country','id');
+    }
+
 }

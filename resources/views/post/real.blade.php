@@ -14,9 +14,8 @@
 <table>
     @foreach($person as $item)
         <tr>
-            <td>{{$item->login}}</td>
-            <td>{{$item->password}}</td>
-            <td>{{ !empty($item->city) ? $item->city->name : '' }}</td>
+            <td>{{$item->name}}</td>
+            <td>{{ !empty($item->country) ? $item->country->name : '' }}</td>
         </tr>
     @endforeach
 </table>
