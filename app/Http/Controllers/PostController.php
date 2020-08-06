@@ -106,12 +106,22 @@ class PostController extends Controller
 
     }*/
 
-    public function real()
+    /*public function real()
     {
         $person = City::all();
 
 
        return view('post.real',['person'=>$person]);
+    }*/
+
+    public function real()
+    {
+        $country = Country::find(1)->cities;
+
+        dump($country);
+        $cities = Country::all();
+
+       return view('post.real',['cities'=>$cities]);
     }
 
 
